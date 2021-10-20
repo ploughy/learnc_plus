@@ -1,17 +1,17 @@
 #include "swap.h"
 
 //函数的定义
-void swap(int num1, int num2)
+void swap(int *num1, int *num2)
 {
 	cout << "转换前：" << endl;
-	cout << "num1=" << num1 << endl;
-	cout << "num2=" << num2 << endl;
-	int temp = num1;
-	num1 = num2;
-	num2 = temp;
+	cout << "num1=" << *num1 << endl;
+	cout << "num2=" << *num2 << endl;
+	int temp = *num1;
+	*num1 = *num2;
+	*num2 = temp;
 	cout << endl << "转换后：" << endl;
-	cout << "num1=" << num1 << endl;
-	cout << "num2=" << num2 << endl;
+	cout << "num1=" << *num1 << endl;
+	cout << "num2=" << *num2 << endl;
 }
 
 void Define_Use_point()
@@ -72,4 +72,45 @@ void Const_point()
 	//指针指向的值不可以改，指针的指向不可以改
 	//*p3 = 30;//错误
 	//p3 = &b;//错误
+}
+
+void Numbers_point()
+{
+	int numbers[10] = { 0,1,2,3,4,5,6,7,8,9 };
+	int * p = numbers;//numbers就是数组的首地址
+	for (int i = 0; i < 10; i++) {
+		cout << *p << "  " << p << endl;
+		p++;
+	}
+}
+
+void swap_p(int *p1, int *p2)
+{
+	//swap(*p1,*p2);
+	int temp = *p1;
+	*p1 = *p2;
+	*p2 = temp;
+}
+
+void Bulling_point(int *arr, int len)//传入数组首地址和数组长度
+{
+	for (int i = 0; i < len-1; i++) {
+		for (int j = 0; j < len-1; j++) {
+			if (arr[j] > arr[j + 1]) {
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	PrintArr(arr, len);
+}
+
+void PrintArr(int *arr, int len)
+{
+	for (int i = 0; i < len; i++)
+	{
+		cout << arr[i] << " ";
+	} 
+	cout << endl;
 }
